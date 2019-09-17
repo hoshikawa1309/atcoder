@@ -10,20 +10,35 @@ for i in range(N // 2):
         if str == search[:i + 1]:
             ans = len(str)
 print(ans)
+
+n = int(input())
+s = input()
+
+l1 = l2 = length = 0
+
+while l2 + length < n:
+    if s[l1: l2] in s[l2:]:
+        length = l2 - l1
+        l2 += 1
+    else:
+        l1 += 1
+        l2 = l1 + length + 1
+
+print(length)
 '''
-from pprint import pprint
-#N  = int(input())
-S1 = input()
-S2 = input()
-dp = [[0] * (len(S1) + 1)] * (len(S2) + 1)
-pprint(dp[0][0])
-print(len(S1))
-for i in range(len(S1)):
-    for j in range(len(S2)):
-        if S1[i] == S2[j]:
-            dp[i+1][j+1] = dp[i][j] + 1
-        else:
-            dp[i+1][j+1] = max(dp[i][j+1] , dp[i+1][j])
-        pprint(dp)
-pprint(dp)
-print(dp[len(S1)][len(S2)])
+
+n = int(input())
+s = input()
+
+l1 = l2 = length = 0
+
+while l2 + length < n:
+    print("s[l1:l2]" , s[l1:l2])
+    print("s[l2:]" , s[l2:])
+    if s[l1:l2] in s[l2:]:
+        length = l2 - l1
+        l2 += 1
+    else:
+        l1 += 1
+        l2 = l1 + length + 1
+print(length)
