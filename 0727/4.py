@@ -12,23 +12,20 @@ for c in range(len(S)):
     if S[c] == '?':
         for k in range(10):
             for j in range(N):
-                dp[(k * digit + j) % N] += dp[j + 13]
-                dp[(k * digit + j) % N] %= mod
+                idx = (k * digit + j) % N
+                dp[idx] = (dp[idx] + dp[j + 13]) % mod
     else:
         k = int(S[c])
         for j in range(N):
-            #index = (k * digit + j) % N
-            dp[(k * digit + j) % N] += dp[j + 13]
-            dp[(k * digit + j) % N] %= mod
-
+            idx = (k * digit + j) % N
+            dp[idx] = (dp[idx] + dp[j + 13]) % mod
     digit *= 10
     digit %= N
-    #print(dp)
+    print(dp)
     dp[13:26] = dp[:13]
-    #print(dp)
 print(dp[5])
-'''
 
+'''
 r = [[(j - k) * 9 % 13 for j in range(10)] for k in range(13)]
 d = [1] + [0] * 12
 M = 10 ** 9 + 7
