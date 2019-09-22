@@ -1,17 +1,20 @@
 import sys
 input = sys.stdin.readline
 N = int(input())
-work = []
-num = [0,1,2]
+a = []
+b = []
+c = []
 for _ in range(N):
-    a , b , c = map(int , input().split())
-    work.append([a,b,c])
-dp = [[0] * N for _ in range(3)]
-for i in range(N):
-    max_value = max(work[i])
-    index = work[i].index(max_value)
-    dp[i][index] = max_value
-    dp[][] = 
+    a_val , b_val , c_val = map(int , input().split())
+    a.append(a_val)
+    b.append(b_val)
+    c.append(c_val)
+
+for i in range(N - 2, -1, -1):
+    a[i] += max(b[i + 1], c[i + 1])
+    b[i] += max(a[i + 1], c[i + 1])
+    c[i] += max(a[i + 1], b[i + 1])
+print(max(a[0],b[0],c[0]))
 
 
 
