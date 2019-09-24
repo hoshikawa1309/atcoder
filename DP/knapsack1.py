@@ -1,4 +1,4 @@
-'''遅い
+'''
 import sys
 
 input = sys.stdin.readline
@@ -13,7 +13,6 @@ for _ in range(N):
 
 def knapsack():
     dp = [[-1] * (W + 1) for _ in range(N + 1)]
-
     def solve(i, w):
         if dp[i][w] != -1:
             return dp[i][w]
@@ -34,14 +33,13 @@ def knapsack():
 if __name__ == "__main__":
     print(knapsack())
 '''
-
 import numpy as np
 N , W = map(int, input().split())
 goods = np.array([list(map(int , input().split())) for _ in range(N)])
 dp = np.zeros((N + 1 , W + 1) , dtype = np.int)
 
 for i in range(0,N):
-    w, v = goods[i,:]
+    w, v = goods[i]
     dp[i + 1, w:] = np.maximum(dp[i,w:] , dp[i,:-w] + v)
     dp[i + 1, :] = np.maximum(dp[i + 1,:],dp[i,:])
 print(int(dp[N,W]))
