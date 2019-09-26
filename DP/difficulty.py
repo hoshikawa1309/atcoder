@@ -63,6 +63,3 @@ for _ in range(3):
     A = A_new
     print(A)
 print(sum(A) % mod)
-=======
-print(ans)
->>>>>>> origin/master
