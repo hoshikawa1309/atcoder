@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 mod = 10 ** 9 + 7
 '''
+=======
+MOD = 10 ** 9 + 7
+>>>>>>> origin/master
 # from functools import lru_cache
 from bisect import bisect_left
 
@@ -37,6 +41,7 @@ for i in dp:
     ans += i
     ans %= MOD
 
+<<<<<<< HEAD
 print(ans)
 '''
 N = int(input())
@@ -58,3 +63,6 @@ for _ in range(3):
     A = A_new
     print(A)
 print(sum(A) % mod)
+=======
+print(ans)
+>>>>>>> origin/master
