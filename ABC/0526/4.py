@@ -4,8 +4,8 @@ N, K = map(int, input().split())
 #V = list(map(int, input().split()))
 V = deque(map(int, input().split()))
 ans = 0
-for l in range(K):
-    for r in range(0 , K - l):
+for l in range(K + 1):
+    for r in range(0 , K - l + 1):
         work_V = deepcopy(V)
         if l + r > N:
             continue
@@ -15,7 +15,7 @@ for l in range(K):
         for i in range(l):
             #hold.append(V[i])
             hold.append(work_V.popleft())
-        for i in range(1 , r + 1):
+        for i in range(N - r , N):
             #hold.append(V[-i])
             hold.append(work_V.pop())
         hold.sort()
