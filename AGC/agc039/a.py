@@ -34,8 +34,6 @@ if continuous == 0 and S[0] == S[-1]:
     print(K - 1)
 else:
     ans = K * continuous
-    if S[0] == S[-1]:
-        ans += left // 2 + (left + right) // 2 * (K - 1) + right // 2
-    else:
-        ans += (left // 2 + right // 2) * K
+    if right % 2 == 1 and left % 2 == 1:
+        ans += K - 1
     print(ans)
