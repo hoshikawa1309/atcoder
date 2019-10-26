@@ -23,4 +23,4 @@ while True:
     c_list.append(c)
 
 for i in range(len(n_list)):
-    
+
