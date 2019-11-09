@@ -1,4 +1,5 @@
 '''
+## 単純な再帰。しかしTLE
 def main():
     from functools import lru_cache
     import sys
@@ -22,23 +23,26 @@ def main():
     print(solve(0,W,0))
 
 main()
-
 10
 3 2
 4 20
 3 40
 6 100
-
 '''
+
+##PyPy用、しかしMLE
+import numpy as np
 W = int(input())
 N, K = map(int, input().split())
-pictures = [list(map(int, input().split())) for _ in range(N)]
+pictures = tuple(tuple(map(int, input().split())) for _ in range(N))
+pictures = np.array(pictures)
 dp = [[[0 for _ in range(K + 1)] for _ in range(W + 1)] for _ in range(N + 1)]
+dp = np.array(dp)
 for i in range(N-1,-1,-1):
     for j in range(W+1):
         for k in range(K):
             if j < pictures[i][0] or k == K:
-                dp[i][j][k] = dp[i+1][j][k]
+                dp[i][j:][k] = dp[i+1][j][k]
             else:
                 dp[i][j][k] = max(dp[i+1][j][k] , dp[i+1][j - pictures[i][0]][k + 1] + pictures[i][1])
 print(dp[0][W][0])
