@@ -28,6 +28,3 @@ for bit in range(2 ** D):
     if tmp_ans < ans and sum_val >= G:
         ans = tmp_ans
 print(ans)
-
-
-
