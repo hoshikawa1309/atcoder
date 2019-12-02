@@ -23,5 +23,24 @@ for i in range(len(S) - 2):
                 print(sum(pin))
                 exit()
 print(sum(pin))
-
 '''
+
+N = int(input())
+S = list(input())
+S = list(map(int,S))
+pin = [0,0,0]
+ans = 0
+for i in range(1000):
+    pin[0] = i // 100
+    pin[1] = (i // 10) % 10
+    pin[2] = i % 10
+    cnt = 0
+    #print(pin)
+    for j in range(N):
+        if pin[cnt] == S[j]:
+            cnt += 1
+        if cnt == 3:
+            ans += 1
+            break
+print(ans)
+
