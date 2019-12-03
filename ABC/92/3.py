@@ -16,7 +16,7 @@ for next in range(1,len(A)):
         next_direct = "right"
     elif A[next - 1] > A[next]:
         next_direct = "left"
-    else:
+    else:1
         next_direct = "no"
     if now_direct != next_direct and (next_direct != "no" and now_direct != "no"):
         d = min(distance[next - 1] , distance[next - 2])
