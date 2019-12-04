@@ -1,17 +1,36 @@
 c = list(list(map(int,input().split())) for _ in range(3))
-a = []
-b = []
-for i in range(3):
-    a.append(min(c[i]))
-    b.append(min(c[0][i] , c[1][i],c[2][i]))
-if b == c[0] and c[0] == c[1] == c[2]:
-    a = [0,0,0]
-if a == [c[0][0] , c[1][0] ,c[2][0]] and c[0][0] == c[0][1] == c[0][2] and c[1][0] == c[1][1] == c[1][2] and c[2][0] == c[2][1] == c[2][2]:
-    b = [0, 0, 0]
 
-for i in range(3):
-    for j in range(3):
-        if c[i][j] != a[i] + b[j]:
-            print("No")
-            exit()
-print("Yes")
+for b1 in range(101):
+    a = []
+    b = []
+    a1 = c[0][0] - b1
+    if a1 < 0:
+        break
+    a.append(a1)
+    b.append(b1)
+    for b2 in range(101):
+        a2 = c[1][1] - b2
+        if a2 < 0:
+            break
+        a.append(a2)
+        b.append(b2)
+        for b3 in range(101):
+            a3 = c[2][2] - b3
+            if a3 < 0:
+                break
+            a.append(a3)
+            b.append(b3)
+            for i in range(3):
+                for j in range(3):
+                    if a[j] + b[i] != c[i][j]:
+                        break
+                    if i == 2 and j == 2:
+                        print("Yes")
+                        exit()
+                if a[j] + b[i] != c[i][j]:
+                    break
+            b.pop()
+            a.pop()
+        a.pop()
+        b.pop()
+print("No")
