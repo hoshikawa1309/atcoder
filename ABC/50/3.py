@@ -3,24 +3,17 @@ import math
 N = int(input())
 A = list(map(int,input().split()))
 A_count = Counter(A)
-Acount_keys = list(A_count.keys())
-Acount_keys.sort()
-#print(A_count)
-now = 0
-
+count_item = list(A_count.items())
+count_item.sort()
+start = 1 - (N % 2)
 for i in range(math.ceil(N / 2)):
-    key = i * 2 + (1 - N % 2)
-    if Acount_keys[i] != key:
-        print("0")
-        exit()
-    elif i == 0 and Acount_keys[i] == 0:
-        if A_count[0] != 1:
+    if i == 0 and N % 2 == 1:
+        if count_item[i][0] == 0 and count_item[i][1] != 1:
             print("0")
             exit()
-    elif A_count[key] != 2:
+    else:
+        if count_item[i][0] != i * 2 + (1 - (N % 2)) or count_item[i][1] != 2:
             print("0")
             exit()
-
-print(2 ** (N // 2))
-
+print(2 ** (N // 2) % (10 ** 9 + 7)
 
