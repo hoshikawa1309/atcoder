@@ -15,5 +15,5 @@ for i in range(math.ceil(N / 2)):
         if count_item[i][0] != i * 2 + (1 - (N % 2)) or count_item[i][1] != 2:
             print("0")
             exit()
-print(2 ** (N // 2) % (10 ** 9 + 7)
+print(2 ** (N // 2) % (10 ** 9 + 7))
 
