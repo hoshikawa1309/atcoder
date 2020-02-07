@@ -1,33 +1,23 @@
 N = int(input())
 num_list = [3, 5, 7]
-
-
-def Base_10_to_n(X, n):
-    if (int(X / n)):
-        return Base_10_to_n(int(X / n), n) + str(X % n)
-    return str(X % n)
-
 ans = 0
-i = 5
-while True:
-    tmp = Base_10_to_n(i, 3)
-    base = 1
-    num10 = 0
-    tmp = list(tmp)
-    if len(tmp) < 3:
-        tmp.insert(0, "0")
-
-    for j in range(len(tmp) - 1, -1, -1):
-        idx = int(tmp[j])
-        num10 += num_list[idx] * base
-        base *= 10
-    if num10 > N:
-        break
-    # print(tmp)
 
 
-    tmp = set(tmp)
-    if {'0', '1', '2'} == tmp:
+def dfs(num, flag3=False, flag5=False, flag7=False):
+    # 終了条件
+    if num > N:
+        return
+
+    # 加算条件
+    if flag3 and flag5 and flag7:
+        global ans
         ans += 1
-    i += 1
+
+    # 探索
+    dfs(num * 10 + 3, True, flag5, flag7)
+    dfs(num * 10 + 5, flag3, True, flag7)
+    dfs(num * 10 + 7, flag3, flag5, True)
+
+
+dfs(0)
 print(ans)
