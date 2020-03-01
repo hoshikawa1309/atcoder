@@ -1,22 +1,33 @@
-#N = input()[::-1]
-N = input()
+N = input()[::-1]
+
 len_N = len(N)
 ans = 0
-next_bit = False
+carry = False
 
 for i in range(len_N):
-    tmp = int(N[i])
-    # dp[i] = min(10 - tmp + 1 + dp[i - 1], dp[i - 1] + tmp)
-    if tmp > 5:
-        if next_bit:
-            ans += 10 - tmp
+    num = int(N[i])
+    if num > 5:
+        if carry:
+            ans += 9 - num
         else:
-            ans += 10 - tmp + 1
-            next_bit = True
+            ans += 10 - num + 1
+            carry = True
+    elif num == 5:
+        # 次の数が5より小さい時または、最後の桁の時
+        if i == len_N - 1 or int(N[i + 1]) < 5:
+            if carry:
+                ans += 9 - num
+            else:
+                ans += 5
+            carry = False
+        else:
+            if carry:
+                ans += 9 - num
+            else:
+                ans += 10 - num + 1
+                carry = True
     else:
-        if next_bit:
-            next_bit = False
-        ans += tmp
-
+        ans += num
+        carry = False
 
 print(ans)
