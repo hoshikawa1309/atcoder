@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a9933ce9-f36b-44b8-95a4-7f99a954ea6b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/0302/2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/0302/3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/0302/4.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ABC/157/1.py" beforeDir="false" afterPath="$PROJECT_DIR$/../ABC/157/1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ABC/157/2.py" beforeDir="false" afterPath="$PROJECT_DIR$/../ABC/157/2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ABC/157/3.py" beforeDir="false" afterPath="$PROJECT_DIR$/../ABC/157/3.py" afterDir="false" />
-    </list>
+    <list default="true" id="a9933ce9-f36b-44b8-95a4-7f99a954ea6b" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,6 +129,7 @@
       <option name="presentableId" value="Default" />
       <updated>1583102535173</updated>
       <workItem from="1583102536339" duration="677000" />
+      <workItem from="1584311775523" duration="4000" />
     </task>
     <servers />
   </component>
