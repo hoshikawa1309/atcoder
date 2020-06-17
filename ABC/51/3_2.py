@@ -1,0 +1,15 @@
+sx, sy, tx, ty = map(int, input().split())
+directions = ['U', 'D', 'L', 'R']
+
+print(directions[0] * (ty - sy), end='')
+print(directions[3] * (tx - sx), end='')
+print(directions[1] * (ty - sy), end='')
+print(directions[2] * (tx - sx), end='')
+print(directions[2], end='')
+print(directions[0] * (ty - sy + 1), end='')
+print(directions[3] * (tx - sx + 1), end='')
+print(directions[1], end='')
+print(directions[3], end='')
+print(directions[1] * (ty - sy + 1), end='')
+print(directions[2] * (tx - sx + 1), end='')
+print(directions[0])
