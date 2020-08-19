@@ -2,10 +2,14 @@ d = {'b': 1, 'c': 1, 't': 3, 'j': 3, 'l': 5, 'v': 5, 'p': 7, 'm': 7, 'n': 9, 'g'
 N = int(input())
 W = list(input().split())
 keys = d.keys()
-for word in W:
+ans = []
+for j in range(N):
+    word = W[j]
+    tmp_ans = ''
     for i in range(len(word)):
         target = word[i].lower()
         if target in keys:
-            print(d[target], end='')
-    print(' ', end='')
-print()
+            tmp_ans += str(d[target])
+    if tmp_ans:
+        ans.append(tmp_ans)
+print(*ans, sep=' ')
