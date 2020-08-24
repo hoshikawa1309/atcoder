@@ -4,43 +4,46 @@ sH, sW = map(int, input().split())
 sH, sW = sH - 1, sW - 1
 gH, gW = map(int, input().split())
 gH, gW = gH - 1, gW - 1
-graph = []
+stage = []
 scores = []
 for _ in range(H):
-    graph.append(list(input()))
+    stage.append(list(input()))
     scores.append([float('inf')] * W)
 scores[sH][sW] = 0
-q = deque()
-m2_q = deque()
-q.append([sW, sH])
-m2_q.append([sW, sH])
+moveA_q = deque()
+moveB_q = deque()
+moveA_q.append([sW, sH])
+moveB_q.append([sW, sH])
 dx_list = [0, 1, 0, -1]
 dy_list = [1, 0, -1, 0]
-while q or m2_q:
-    while q:
-        x, y = q.pop()
-        for dx, dy in zip(dx_list, dy_list):
-            nx, ny = x + dx, y + dy
-            if nx < 0 or W <= nx or ny < 0 or H <= ny:
-                continue
-            if scores[ny][nx] == float('inf') and graph[ny][nx] == '.':
-                scores[ny][nx] = scores[y][x]
-                q.appendleft([nx, ny])
-                m2_q.append([nx, ny])
+while moveA_q:
+    if scores[gH][gW] != float('inf'):
+        break
+    # 移動AでBFS
+    x, y = moveA_q.pop()
+    moveB_q.append([x, y])
+    for dx, dy in zip(dx_list, dy_list):
+        nx, ny = x + dx, y + dy
+        if nx < 0 or W <= nx or ny < 0 or H <= ny or stage[ny][nx] == '#':
+            continue
+        if scores[ny][nx] == float('inf'):
+            scores[ny][nx] = scores[y][x]
+            moveA_q.append([nx, ny])
+            # moveB_q.append([x, y])
+    if not moveA_q:
+        # 移動bで動けるマスをmodeA_qに格納
+        while moveB_q:
+            x, y = moveB_q.pop()
+            for dx in range(-2, 3):
+                for dy in range(-2, 3):
+                    nx, ny = x + dx, y + dy
+                    if nx < 0 or W <= nx or ny < 0 or H <= ny or stage[ny][nx] == '#':
+                        continue
+                    if scores[ny][nx] == float('inf'):
+                        moveA_q.append([nx, ny])
+                        scores[ny][nx] = scores[y][x] + 1
 
-    while m2_q:
-        x, y = m2_q.pop()
-        for dx in range(-2, 3):
-            for dy in range(-2, 3):
-                nx, ny = x + dx, y + dy
-                if nx < 0 or W <= nx or ny < 0 or H <= ny:
-                    continue
-
-                if scores[ny][nx] > scores[y][x] and graph[ny][nx] == '.':
-                    q.append([nx, ny])
-                    scores[ny][nx] = scores[y][x] + 1
-
-print(*scores,sep='\n')
+# print(*scores,sep='\n')
 if scores[gH][gW] == float('inf'):
     print(-1)
 else:
