@@ -1,13 +1,11 @@
+from collections import deque
 K = int(input())
-runrun = 0
-for i in range(1, 1000000):
-    str_i = str(i)
-    now = int(str_i[0])
-    for j in str_i:
-        if abs(now - int(j)) > 1:
-            break
-    else:
-        runrun += 1
-    if runrun == K:
-        print(i)
-        exit()
+q = deque([i for i in range(1, 10)])
+for _ in range(K - 1):
+    # 13print(q)
+    num = q.popleft()
+    for i in range(-1,2):
+        if 0 <= int(str(num)[-1]) + i <= 9:
+            q.append(num * 10 + int(str(num)[-1]) + i)
+# print(len(q))
+print(q[0])
