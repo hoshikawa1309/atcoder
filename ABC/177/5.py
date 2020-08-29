@@ -70,6 +70,11 @@ def primeFactor(n):
     return ret
 
 
+def gcd(a, b):
+    while b: a, b = b, a % b
+    return a
+
+
 N = int(input())
 A = list(map(int, input().split()))
 # N = 10 ** 6
