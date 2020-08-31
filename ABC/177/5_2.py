@@ -51,6 +51,7 @@ for i in range(N):
         break
 else:
     pairwise = True
+print(sum(prime_flags))
 if pairwise:
     print('pairwise coprime')
     exit()
