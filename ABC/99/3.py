@@ -23,5 +23,5 @@ for i in range(1,3):
             counts.append(coins[i] ** j)
         else:
             break
-#print(counts)
+print(counts)
 print(solve(N , len(counts) - 1))
