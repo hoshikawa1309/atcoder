@@ -24,4 +24,4 @@ def prime_factorize(n):
     return primes
 
 if __name__ == '__main__':
-    print(prime_factorize(10))
+    print(prime_factorize(44852))
