@@ -1,3 +1,2 @@
-S = list(input())
-for _ in range(len(S)):
-    print("x", end='')
+s = input()
+print('x' * len(s))

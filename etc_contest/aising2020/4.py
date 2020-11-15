@@ -1,27 +1,58 @@
-def f(n, c_one):
-    cnt = 0
+def popcount(k):
+    ret_val = bin(k).count('1')
+    return ret_val
+
+
+def f(n):
+    ret_val = 1
     while n:
-        n = n % c_one
-        cnt += 1
-        # c_one = bin(n).count('1') # ここがボトルネック
-        c_one = 0
-        tmp = n
-        while tmp:
-            if tmp % 2 == 1:
-                c_one += 1
-            tmp //= 2
-    return cnt
+        n = n % popcount(n)
+        ret_val += 1
+    return ret_val
 
 
 N = int(input())
-binary_str = str(input())
-# N = 2 * 10 ** 5
-# binary_str = '1' * (2 * 10 ** 5)
-binary_num = int(binary_str, 2)
-cnt_one = binary_str.count('1')
-for i in range(N):
-    idx = (N - 1 - i)
-    if binary_str[i] == '1':
-        print(f(binary_num - 2 ** idx, cnt_one - 1))
+X = input()
+if N == 1:
+    if X == '1':
+        print(0)
     else:
-        print(f(binary_num + 2 ** idx, cnt_one + 1))
+        print(1)
+    exit()
+dp1 = [0] * N
+dp1[0] = 1
+dp2 = [0] * N
+dp2[0] = 1
+bit = X.count('1')
+if bit == 0:
+    for i in range(N):
+        print(1)
+elif bit == 1:
+    for i in range(N):
+        if X[i] == '1':
+            print(0)
+        else:
+            work = (pow(2, N - X.index('1') - 1, 2) + pow(2, N - i - 1, 2)) % 2
+            if work == 0:
+                print(1)
+            else:
+                print(f(work))
+else:
+    for i in range(1, N):
+        dp1[i] = (2 * dp1[i - 1]) % (bit + 1)
+        dp2[i] = (2 * dp2[i - 1]) % (bit - 1)
+    dp1_sum = 0
+    dp2_sum = 0
+    for i in range(N):
+        if X[i] == '1':
+            dp1_sum += dp1[N - i - 1]
+            dp2_sum += dp2[N - i - 1]
+    for i in range(N):
+        if X[i] == '1':
+            work = (dp2_sum - pow(2, N - i - 1, bit - 1)) % (bit - 1)
+        else:
+            work = (dp1_sum + pow(2, N - i - 1, bit + 1)) % (bit + 1)
+        if work == 0:
+            print(1)
+        else:
+            print(f(work))
