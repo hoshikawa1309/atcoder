@@ -1,21 +1,24 @@
 N, T = map(int, input().split())
-A_times = []
-B_times = []
-diff_time = []
+A = []
+B = []
+diff = []
 for _ in range(N):
     a, b = map(int, input().split())
-    A_times.append(a)
-    B_times.append(b)
-    diff_time.append(a - b)
-if sum(B_times) > T:
+    A.append(a)
+    B.append(b)
+    diff.append(a - b)
+diff.sort(reverse=True)
+if sum(A) <= T:
+    print(0)
+    exit()
+if sum(B) > T:
     print(-1)
     exit()
-diff_time.sort()
-now = sum(B_times)
-ans = N
-for diff in diff_time:
-    if now + diff > T:
+ans = 0
+now = sum(A)
+for d in diff:
+    now -= d
+    ans += 1
+    if now <= T:
         break
-    now += diff
-    ans -= 1
 print(ans)

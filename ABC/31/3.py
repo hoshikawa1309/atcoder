@@ -1,21 +1,21 @@
 N = int(input())
 A = list(map(int,input().split()))
-ans = 0
-aokimax = 0
-# i : 高橋くんがとる値
-for i in range(N):
-    # j : 青木くんがとる値を全探索
-    aokimax = 0
-    for j in range(N):
-        if i == j:
+ans = -float('inf')
+for t in range(N):
+    aoki_max = -float('inf')
+    for a in range(N):
+        if t == a:
             continue
-        start = min(i , j)
-        end = max(i , j) + 1
-        work = A[start:end]
-        tmp_ans = sum(work[::2])
-        aoki = sum(work[1::2])
-        if aoki > aokimax:
-            aokimax = aoki
-            if tmp_ans > ans:
-                ans = tmp_ans
+        start_idx = min(a, t)
+        end_idx = max(a, t)
+        takahashi = 0
+        aoki = 0
+        for i in range(start_idx, end_idx + 1, 2):
+            takahashi += A[i]
+        for i in range(start_idx + 1, end_idx + 1, 2):
+            aoki += A[i]
+        if aoki_max < aoki:
+            tmp_ans = takahashi
+            aoki_max = aoki
+    ans = max(tmp_ans, ans)
 print(ans)

@@ -1,7 +1,7 @@
-A , B , C ,D = map(int, input().split())
-count = 0
-for i in range(A,B + 1):
-    flag = 0
-    if i % C != 0 and i % D != 0:
-        count += 1
-print(count)
+import math
+A, B, C, D = map(int, input().split())
+A -= 1
+lcm = (C * D) // math.gcd(C, D)
+B_sum = B - (B // C) - (B // D) + (B // lcm)
+A_sum = A - (A // C) - (A // D) + (A // lcm)
+print(B_sum - A_sum)
