@@ -1,34 +1,24 @@
-N , M = map(int,input().split())
-sc = list(tuple(map(int,input().split())) for _ in range(M))
+N, M = map(int, input().split())
+sc = []
+s_max = 0
+for _ in range(M):
+    s, c = map(int, input().split())
+    sc.append([s, str(c)])
+    s_max = max(s, s_max)
 
-for i in range(1000):
-    num = []
+if N == 1:
+    start = 0
+else:
+    start = 10 ** (N - 1)
+for i in range(start, 1000):
     str_i = str(i)
     len_i = len(str_i)
-    if len_i >= 3:
-        num.append(int(str_i[-3]))
-    else:
-        num.append("")
-
-    if len_i >= 2:
-        num.append(int(str_i[-2]))
-    else:
-        num.append("")
-
-    num.append(int(str_i[-1]))
-
-    bad_flag = False
     for s, c in sc:
-        if num[s - 1] != c:
-            bad_flag = True
-        if bad_flag:
-            continue
-    if not bad_flag:
-        ans = i
-        break
-
-if bad_flag:
-    print("-1")
-else:
-    print(ans)
-
+        if len_i != N:
+            break
+        if str_i[s - 1] != c:
+            break
+    else:
+        print(i)
+        exit()
+print(-1)
