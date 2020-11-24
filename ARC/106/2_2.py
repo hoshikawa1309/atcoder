@@ -54,25 +54,17 @@ A = [10 ** 9] * N
 B = [10 ** 9] * N
 '''
 uf = UnionFind(N)
-graph = [[] for _ in range(N)]
-for i in range(M):
+for _ in range(M):
     c, d = map(int, input().split())
     uf.union(c - 1, d - 1)
-    if uf.find(c - 1) < uf.find(d - 1):
-        graph[uf.find(c - 1)].append(uf.find(d - 1))
-    else:
-        graph[uf.find(d - 1)].append(uf.find(c - 1))
-print(graph)
-visited = [False] * N
+
+root_Asum = [0] * N
+root_Bsum = [0] * N
 for i in range(N):
-    if visited[i]:
-        continue
-    a_sum = 0
-    b_sum = 0
-    for node in uf.members(i):
-        a_sum += A[node]
-        b_sum += B[node]
-        visited[i] = True
+    now_root = uf.find(i)
+    root_Asum[now_root] += A[i]
+    root_Bsum[now_root] += B[i]
+for a_sum, b_sum in zip(root_Asum, root_Bsum):
     if a_sum != b_sum:
         print('No')
         exit()
