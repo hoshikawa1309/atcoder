@@ -10,8 +10,8 @@ for i in range(1, N):
         left = max(0, i - r)
         right = max(0, i - l + 1)
         dp[i] += dpsum[right] - dpsum[left]
-    dpsum[i + 1] = dpsum[i] + dp[i]
-    print(i)
-    print(*dp)
-    print(*dpsum)
+    dpsum[i + 1] = (dpsum[i] + dp[i]) % MOD
+
+print(*dp)
+print(*dpsum)
 print(dp[-1])
