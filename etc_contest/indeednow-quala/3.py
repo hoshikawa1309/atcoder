@@ -1,16 +1,14 @@
 N = int(input())
 scores = []
 for _ in range(N):
-    score = int(input())
-    if score:
-        scores.append(score)
-
+    x = int(input())
+    if x:
+        scores.append(x)
 scores.sort(reverse=True)
-
 Q = int(input())
 for _ in range(Q):
-    k = int(input())
-    if k < len(scores):
-        print(scores[k] + 1)
+    capacity = int(input())
+    if capacity >= len(scores):
+        print(0)
     else:
-        print('0')
+        print(scores[capacity] + 1)
