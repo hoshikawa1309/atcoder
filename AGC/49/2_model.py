@@ -8,3 +8,17 @@ for i in range(N):
     B[i + 1] = int(B[i]) ^ int(T[i])
 print(A)
 print(B)
+res = 0
+s = 0
+for t in range(N):
+    s = max(s, t)
+    if A[s] == B[t]:
+        continue
+    while s + 1 <= N and A[s] == A[s + 1]:
+        s += 1
+    if s == N:
+        print(-1)
+        exit()
+    s += 1
+    res += s - t
+print(res)
