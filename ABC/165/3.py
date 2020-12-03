@@ -1,34 +1,23 @@
 import sys
 sys.setrecursionlimit(10 ** 6)
 N, M, Q = map(int, input().split())
-Q = [list(map(int,input().split())) for _ in range(Q)]
+abcd = [list(map(int, input().split())) for _ in range(Q)]
 ans = 0
-A = []
-
-
-def dfs():
-    global A
+def dfs(A):
     if len(A) == N:
-        return
-    global ans
-    if len(A) == 0:
-        start = 1
+        global ans
+        sum_val = 0
+        for a, b, c, d in abcd:
+            a, b = a - 1, b - 1
+            if A[b] - A[a] == c:
+                sum_val += d
+        ans = max(ans, sum_val)
     else:
-        start = A[-1]
-    for i in range(start, M + 1):
-        A.append(i)
-        dfs()
-        if len(A) != N:
+        for i in range(A[-1], M + 1):
+            A.append(i)
+            dfs(A)
             A.pop()
-            continue
-        # print(A)
-        tmp_ans = 0
-        for a, b, c, d in Q:
-            if A[b - 1] - A[a - 1] == c:
-                tmp_ans += d
-        ans = max(ans, tmp_ans)
-        A.pop()
 
 
-dfs()
+dfs([1])
 print(ans)
